@@ -1,0 +1,10 @@
+[versions]
+gradle-api = "8.8.0-alpha08"
+leafplugin = "1.0.0"
+
+[libraries]
+gradle-api = { module = "com.android.tools.build:gradle-api", version.ref = "gradle-api" }
+leafagent = { group = "leafagent", name = "app", version.ref = "leafplugin" }
+
+[plugins]
+leafplugin = { id = "leafagent.plugin", version.ref = "leafplugin" }
