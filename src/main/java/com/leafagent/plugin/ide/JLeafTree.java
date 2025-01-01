@@ -1,6 +1,7 @@
 package com.leafagent.plugin.ide;
 
 import com.intellij.openapi.wm.ToolWindow;
+import com.leafagent.view.LeafElement;
 import leafagent.info.BaseInfo;
 
 import javax.swing.JComponent;
@@ -16,8 +17,12 @@ public class JLeafTree extends JComponent {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        for (BaseInfo leaf : leafs) {
-            add(new JLeafTreeItem(leaf.getName(), List.of(new BaseInfo.Build().setName("get").build(), new BaseInfo.Build().setName("add").build())));
+        int prevLeafIndex = leafs.size();
+        for (int i = leafs.size()-1; i >= 0; i--) {
+            if (leafs.get(i).getParentId() == leafs.get(0).getParentId()) {
+                add(new JLeafTreeItem(leafs.get(i), leafs.subList(i+1, prevLeafIndex)), 0);
+                prevLeafIndex = i;
+            }
         }
         updateUI();
     }

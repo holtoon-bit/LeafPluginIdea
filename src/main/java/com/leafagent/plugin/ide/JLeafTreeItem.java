@@ -3,32 +3,49 @@ package com.leafagent.plugin.ide;
 import javax.swing.JComponent;
 import javax.swing.BoxLayout;
 import java.awt.Component;
-import com.intellij.ui.components.JBPanel;
-import com.intellij.ui.components.JBCheckBox;
-import com.intellij.util.ui.JBUI;
+import com.leafagent.view.LeafChildren;
+import com.leafagent.view.LeafElement;
 import leafagent.info.BaseInfo;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 public class JLeafTreeItem extends JComponent {
-    public JLeafTreeItem(String name, List<BaseInfo> leafs) {
-        JBPanel childrenList = new JBPanel();
-        childrenList.setLayout(new BoxLayout(childrenList, BoxLayout.Y_AXIS));
-        childrenList.setBorder(JBUI.Borders.emptyLeft(10));
+    private LeafElement leafElement;
+    private LeafChildren childrenList = new LeafChildren();
 
-        JBCheckBox openButton = new JBCheckBox(name);
-        openButton.addItemListener((itemEvent) -> {
-            if (((JBCheckBox) itemEvent.getItem()).isSelected()) {
-                childrenList.add(new JLeafTree(null, leafs));
-            } else {
-                childrenList.removeAll();
+    private boolean isClicked = false;
+
+    public JLeafTreeItem(BaseInfo info, List<BaseInfo> leafs) {
+        leafElement = new LeafElement(info, leafs);
+
+        leafElement.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
             }
-            childrenList.updateUI();
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (!isClicked) {
+                    childrenList.add(new JLeafTree(null, leafs));
+                    isClicked = true;
+                } else {
+                    childrenList.removeAll();
+                    isClicked = false;
+                }
+                childrenList.updateUI();
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
         });
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(Component.LEFT_ALIGNMENT);
-        add(openButton);
+        add(leafElement);
         add(childrenList);
     }
 }
