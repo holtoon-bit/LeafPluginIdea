@@ -3,6 +3,7 @@ package com.leafagent.plugin.ide;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.ui.components.JBScrollPane;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 

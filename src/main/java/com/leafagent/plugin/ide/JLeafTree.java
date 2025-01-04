@@ -1,7 +1,6 @@
 package com.leafagent.plugin.ide;
 
 import com.intellij.openapi.wm.ToolWindow;
-import com.leafagent.view.LeafElement;
 import leafagent.info.BaseInfo;
 
 import javax.swing.JComponent;

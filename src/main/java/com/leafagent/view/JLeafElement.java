@@ -1,16 +1,18 @@
 package com.leafagent.view;
 
+import com.intellij.ui.JBColor;
 import leafagent.info.BaseInfo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
-public class LeafElement extends JPanel {
-    public LeafElement(BaseInfo info, List<BaseInfo> children) {
+public class JLeafElement extends JPanel {
+    private final int FONT_SIZE = 14;
+
+    public JLeafElement(BaseInfo info) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(30, 31, 34), 1),
+                BorderFactory.createLineBorder(JBColor.border(), 1),
                 BorderFactory.createEmptyBorder(10, 12, 10, 12)));
 
         JLabel label1 = new LeafElementLabel(info.getName());
@@ -33,13 +35,13 @@ public class LeafElement extends JPanel {
     private class LeafElementLabel extends JLabel {
         public LeafElementLabel(String text) {
             super(text);
-            setFont(new Font(getFont().getName(), getFont().getStyle(), 14));
+            setFont(new Font(getFont().getName(), getFont().getStyle(), FONT_SIZE));
         }
 
         public LeafElementLabel(String text, boolean isSupporting) {
             this(text);
             if (isSupporting) {
-                setForeground(new Color(getForeground().getRed(), getForeground().getGreen(), getForeground().getBlue(), 80));
+                setForeground(new Color(getForeground().getRed(), getForeground().getGreen(), getForeground().getBlue(), 100));
             }
         }
     }

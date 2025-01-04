@@ -2,9 +2,10 @@ package com.leafagent.plugin.ide;
 
 import javax.swing.JComponent;
 import javax.swing.BoxLayout;
-import java.awt.Component;
-import com.leafagent.view.LeafChildren;
-import com.leafagent.view.LeafElement;
+import java.awt.*;
+
+import com.leafagent.view.JLeafChildren;
+import com.leafagent.view.JLeafElement;
 import leafagent.info.BaseInfo;
 
 import java.awt.event.MouseEvent;
@@ -12,18 +13,15 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 public class JLeafTreeItem extends JComponent {
-    private LeafElement leafElement;
-    private LeafChildren childrenList = new LeafChildren();
+    private JLeafElement JLeafElement;
+    private JLeafChildren childrenList = new JLeafChildren();
 
     private boolean isClicked = false;
 
     public JLeafTreeItem(BaseInfo info, List<BaseInfo> leafs) {
-        leafElement = new LeafElement(info, leafs);
+        JLeafElement = new JLeafElement(info);
 
-        leafElement.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            }
+        JLeafElement.addMouseListener(new MouseListener() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (!isClicked) {
@@ -36,6 +34,8 @@ public class JLeafTreeItem extends JComponent {
                 childrenList.updateUI();
             }
             @Override
+            public void mouseClicked(MouseEvent e) {}
+            @Override
             public void mouseReleased(MouseEvent e) {}
             @Override
             public void mouseEntered(MouseEvent e) {}
@@ -45,7 +45,7 @@ public class JLeafTreeItem extends JComponent {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(Component.LEFT_ALIGNMENT);
-        add(leafElement);
+        add(JLeafElement);
         add(childrenList);
     }
 }
