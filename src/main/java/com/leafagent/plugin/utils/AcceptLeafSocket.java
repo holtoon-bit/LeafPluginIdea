@@ -9,6 +9,7 @@ public final class AcceptLeafSocket extends Socket {
     private static final int HOST = 2112;
 
     public AcceptLeafSocket() throws IOException {
+        // обработать ошибку в случае если телефон отключен
         super(ADDRESS, HOST);
     }
 
@@ -24,6 +25,7 @@ public final class AcceptLeafSocket extends Socket {
                 BufferedReader input = new BufferedReader(new InputStreamReader(getInputStream()));
                 while (!isInputShutdown()) {
                     String allInfoInJson = input.readLine();
+                    System.out.println(allInfoInJson);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

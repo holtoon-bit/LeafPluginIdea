@@ -1,4 +1,4 @@
-package com.leafagent.view;
+package com.leafagent.plugin.ide;
 
 import com.intellij.ui.JBColor;
 import leafagent.info.BaseInfo;

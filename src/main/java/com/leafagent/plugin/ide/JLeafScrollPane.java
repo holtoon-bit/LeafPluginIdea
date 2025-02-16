@@ -2,14 +2,13 @@ package com.leafagent.plugin.ide;
 
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.ui.components.JBScrollPane;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.List;
+import java.awt.Component;
+import com.leafagent.plugin.ide.handler.LogHandler;
+import leafagent.info.BaseInfo;
 
 public class JLeafScrollPane extends JBScrollPane {
-    public JLeafScrollPane(ToolWindow toolWindow, List leafs) {
-        super(new JLeafTree(toolWindow, leafs));
+    public JLeafScrollPane(ToolWindow toolWindow, LogHandler handler) {
+        super(new JLeafTree(toolWindow, new BaseInfo.Build().setName("root").setId(-1).build(), handler));
         setAlignmentX(Component.LEFT_ALIGNMENT);
     }
 }
