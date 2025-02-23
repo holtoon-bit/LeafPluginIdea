@@ -22,7 +22,6 @@ public class JLeafTreeItem extends JComponent {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (!isClicked) {
-                    System.out.println(handler.getChildren(info));
                     for (BaseInfo parent : handler.getChildren(info)) {
                         childrenList.add(new JLeafTree(null, parent, handler));
                     }

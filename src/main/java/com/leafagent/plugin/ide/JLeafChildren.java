@@ -4,6 +4,7 @@ import com.intellij.ui.JBColor;
 import com.intellij.util.ui.JBUI;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
 import java.awt.*;
 
 public class JLeafChildren extends JPanel {

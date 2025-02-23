@@ -14,12 +14,12 @@ import java.io.IOException;
 public class TreeToolWindow implements ToolWindowFactory {
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        try {
-            AcceptLeafSocket server = new AcceptLeafSocket();
-            server.start();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            AcceptLeafSocket server = new AcceptLeafSocket();
+//            server.start();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         JLeafTreeComponent toolWindowContent = new JLeafTreeComponent(toolWindow, new LeafLogFileHandler(project));
         Content content = ContentFactory.getInstance().createContent(toolWindowContent.getContentPanel(), "", true);

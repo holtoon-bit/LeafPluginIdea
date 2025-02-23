@@ -25,7 +25,6 @@ public final class AcceptLeafSocket extends Socket {
                 BufferedReader input = new BufferedReader(new InputStreamReader(getInputStream()));
                 while (!isInputShutdown()) {
                     String allInfoInJson = input.readLine();
-                    System.out.println(allInfoInJson);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
