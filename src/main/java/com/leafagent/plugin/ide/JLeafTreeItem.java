@@ -6,7 +6,7 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import com.leafagent.plugin.ide.handler.LogHandler;
+import com.leafagent.plugin.utils.handler.LogHandler;
 import leafagent.info.BaseInfo;
 
 public class JLeafTreeItem extends JComponent {

@@ -1,7 +1,8 @@
-package com.leafagent.plugin.ide.handler;
+package com.leafagent.plugin.utils.handler;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.openapi.project.Project;
 import leafagent.info.BaseInfo;
@@ -13,26 +14,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class LeafLogFileHandler implements LogHandler {
-    private Project project;
+    private final Project project;
+    private final LinkedList<DataUpdateListener> updateListeners = new LinkedList<>();
 
+    private final Gson gson;
+    private final TypeToken<ArrayList<BaseInfo>> collectionType;
     private ArrayList<BaseInfo> logg;
 
     public LeafLogFileHandler(@NotNull Project project) {
         this.project = project;
-        handleLog();
+        this.gson = new Gson();
+        this.collectionType = new TypeToken<>(){};
     }
 
-    private void handleLog() {
-        String logValue = PsiManager.getInstance(project).findFile(
-                Objects.requireNonNull(
-                        Objects.requireNonNull(project.getProjectFile())
-                                .getParent().getParent().findChild(".agent-leaf")
-                                .findChild("logg.json")
-                )
-        ).getText();
-        Gson gson = new Gson();
-        TypeToken<ArrayList<BaseInfo>> collectionType = new TypeToken<>(){};
-        logg = gson.fromJson(logValue, collectionType);
+    @Override
+    public void setVirtualFile(VirtualFile vf) {
+        String logValue = Objects.requireNonNull(PsiManager.getInstance(project).findFile(vf)).getText();
+        setLog(logValue);
     }
 
     @Override
@@ -49,5 +47,20 @@ public class LeafLogFileHandler implements LogHandler {
             }
         }
         return children;
+    }
+
+    @Override
+    public void setLog(String log) {
+        logg = gson.fromJson(log, collectionType);
+        callUpdateListeners();
+    }
+
+    @Override
+    public void addDataUpdateListener(DataUpdateListener l) {
+        updateListeners.add(l);
+    }
+
+    private void callUpdateListeners() {
+        updateListeners.forEach((l) -> l.update(logg));
     }
 }

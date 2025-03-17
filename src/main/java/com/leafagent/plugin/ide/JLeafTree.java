@@ -1,7 +1,7 @@
 package com.leafagent.plugin.ide;
 
 import com.intellij.openapi.wm.ToolWindow;
-import com.leafagent.plugin.ide.handler.LogHandler;
+import com.leafagent.plugin.utils.handler.LogHandler;
 import leafagent.info.BaseInfo;
 
 import javax.swing.JComponent;
