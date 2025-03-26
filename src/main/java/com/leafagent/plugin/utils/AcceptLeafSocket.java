@@ -1,34 +1,50 @@
 package com.leafagent.plugin.utils;
 
-import java.io.*;
+import com.leafagent.plugin.utils.handler.LogSocketHandler;
+import com.leafagent.plugin.utils.handler.DataFresher;
+import leafagent.utils.AdbLeafSetting;
+
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.Socket;
 
 
-public final class AcceptLeafSocket extends Socket {
-    private static final String ADDRESS = "localhost";
-    private static final int HOST = 2112;
+public final class AcceptLeafSocket {
+    private final String ADDRESS = "localhost";
+    private final int UPDATE_TIMEOUT = 1000;
+
+    private final LogSocketHandler handler;
+    private final DataFresher<String> dataFresher;
 
     public AcceptLeafSocket() throws IOException {
-        // обработать ошибку в случае если телефон отключен
-        super(ADDRESS, HOST);
+        this.handler = new LogSocketHandler();
+        this.dataFresher = new DataFresher<>();
     }
 
     public void start() {
-        Thread thread = new Thread(new AcceptLeafRunnable());
+        Thread thread = new Thread(() -> {
+            try {
+                while (true) {
+                    Socket socket = new Socket(ADDRESS, AdbLeafSetting.LOCAL_PORT);
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    dataFresher.add(bufferedReader.readLine());
+                    if (dataFresher.haveNext()) {
+                        handler.setLog((String) dataFresher.getCurrent());
+                        handler.update();
+                    }
+                    bufferedReader.close();
+                    socket.close();
+                    Thread.sleep(UPDATE_TIMEOUT);
+                }
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
         thread.start();
     }
 
-    private class AcceptLeafRunnable implements Runnable {
-        @Override
-        public void run() {
-            try {
-                BufferedReader input = new BufferedReader(new InputStreamReader(getInputStream()));
-                while (!isInputShutdown()) {
-                    String allInfoInJson = input.readLine();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    public LogSocketHandler getHandler() {
+        return handler;
     }
 }
