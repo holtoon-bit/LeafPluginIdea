@@ -1,7 +1,6 @@
 plugins {
   id "java"
   id 'org.jetbrains.intellij.platform' version '2.2.0'
-//  alias(libs.plugins.leafplugin)
 }
 
 group = "com.leafagent"
@@ -28,7 +27,6 @@ dependencies {
 }
 
 tasks {
-  // Set the JVM compatibility versions
   sourceCompatibility = "17"
   targetCompatibility = "17"
 

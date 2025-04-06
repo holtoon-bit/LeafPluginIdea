@@ -30,4 +30,8 @@
         <toolWindow id="TreeToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow" anchor="right"
                     factoryClass="com.leafagent.plugin.ide.TreeToolWindow"/>
     </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Leaf Notification" displayType="BALLOON"/>
+    </extensions>
 </idea-plugin>

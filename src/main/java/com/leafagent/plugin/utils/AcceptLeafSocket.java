@@ -38,7 +38,7 @@ public final class AcceptLeafSocket {
                     Thread.sleep(UPDATE_TIMEOUT);
                 }
             } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
+                System.out.println(e);
             }
         });
         thread.start();

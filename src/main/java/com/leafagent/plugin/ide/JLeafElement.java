@@ -65,8 +65,8 @@ public class JLeafElement extends JPanel {
     private class JLeafDescriptionLabel extends JLeafLabel {
         public JLeafDescriptionLabel(String text) {
             super(text);
-            setForeground(new JBColor(new Color(getForeground().getRed(), getForeground().getGreen(), getForeground().getBlue(), 140),
-                    new Color(getForeground().getRed(), getForeground().getGreen(), getForeground().getBlue(), 140)));
+            setForeground(new JBColor(new Color(getForeground().getRed(), getForeground().getGreen(), getForeground().getBlue(), 180),
+                    new Color(getForeground().getRed(), getForeground().getGreen(), getForeground().getBlue(), 180)));
         }
     }
 }
