@@ -7,10 +7,13 @@ import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
 
-public class JLeafChildren extends JPanel {
+/**
+ * Paint leaf line to display a child elements of parent element.
+ */
+public class JLeafChildrenLine extends JPanel {
     private final int OFFSET_CHILDREN = 60;
 
-    public JLeafChildren() {
+    public JLeafChildrenLine() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(JBUI.Borders.emptyLeft(OFFSET_CHILDREN));
     }

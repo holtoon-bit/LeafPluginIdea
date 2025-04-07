@@ -1,6 +1,6 @@
 package com.leafagent.plugin.utils;
 
-import com.leafagent.plugin.utils.handler.LogSocketHandler;
+import com.leafagent.plugin.utils.handler.LogJSONHandler;
 import com.leafagent.plugin.utils.handler.DataFresher;
 import leafagent.utils.AdbLeafSetting;
 
@@ -9,19 +9,27 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-
+/**
+ * Socket receiving the Leaf Log is added in the {@link DataFresher}
+ * for timely handler update (see {@link com.leafagent.plugin.utils.handler.LogHandler LogHandler}).
+ */
 public final class AcceptLeafSocket {
     private final String ADDRESS = "localhost";
     private final int UPDATE_TIMEOUT = 1000;
 
-    private final LogSocketHandler handler;
+    private final LogJSONHandler handler;
     private final DataFresher<String> dataFresher;
 
     public AcceptLeafSocket() throws IOException {
-        this.handler = new LogSocketHandler();
+        this.handler = new LogJSONHandler();
         this.dataFresher = new DataFresher<>();
     }
 
+    /**
+     * Start a socket.
+     * It gets new value of the Leaf Log and add to the {@link DataFresher} all the time.<br>
+     * And call all the {@link com.leafagent.plugin.utils.handler.HandlerDataUpdateListener HandlerDataUpdateListener}.
+     */
     public void start() {
         Thread thread = new Thread(() -> {
             try {
@@ -30,7 +38,7 @@ public final class AcceptLeafSocket {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     dataFresher.add(bufferedReader.readLine());
                     if (dataFresher.haveNext()) {
-                        handler.setLog((String) dataFresher.getCurrent());
+                        handler.setLog(dataFresher.getCurrent());
                         handler.update();
                     }
                     bufferedReader.close();
@@ -44,7 +52,7 @@ public final class AcceptLeafSocket {
         thread.start();
     }
 
-    public LogSocketHandler getHandler() {
+    public LogJSONHandler getHandler() {
         return handler;
     }
 }

@@ -9,9 +9,12 @@ import java.awt.event.MouseListener;
 import com.leafagent.plugin.utils.handler.LogHandler;
 import leafagent.info.BaseInfo;
 
+/**
+ * Tree item with the {@link BaseInfo} info. Open children items by click.
+ */
 public class JLeafTreeItem extends JComponent {
-    private JLeafElement JLeafElement;
-    private JLeafChildren childrenList = new JLeafChildren();
+    private final JLeafElement JLeafElement;
+    private final JLeafChildrenLine childrenList = new JLeafChildrenLine();
 
     private boolean isClicked = false;
 

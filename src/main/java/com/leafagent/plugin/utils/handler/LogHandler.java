@@ -1,10 +1,12 @@
 package com.leafagent.plugin.utils.handler;
 
-import com.intellij.openapi.vfs.VirtualFile;
 import leafagent.info.BaseInfo;
 
 import java.util.List;
 
+/**
+ * Interface of handler for the Leaf Log.
+ */
 public interface LogHandler {
     List<BaseInfo> getLog();
     List<BaseInfo> getChildren(BaseInfo parent);

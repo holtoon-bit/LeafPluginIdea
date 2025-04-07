@@ -10,6 +10,9 @@ import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
+/**
+ * {@link JPanel} for display the {@link JLeafTree}.
+ */
 public class JLeafTreeComponent extends JPanel {
     private JBScrollPane scrollPanel;
     private Dimension contentPanelSize;

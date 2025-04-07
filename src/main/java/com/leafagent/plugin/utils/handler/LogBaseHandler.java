@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Handler for the Leaf Log consisting of the {@link BaseInfo}, storing data in {@link ArrayList}.
+ */
 public abstract class LogBaseHandler implements LogHandler {
     protected final LinkedList<HandlerDataUpdateListener> updateListeners = new LinkedList<>();
 
@@ -16,6 +19,12 @@ public abstract class LogBaseHandler implements LogHandler {
         return logg;
     }
 
+    /**
+     * Get children by {@code id} of the {@link BaseInfo} parent.
+     *
+     * @param parent {@link BaseInfo}
+     * @return {@link List} with {@link BaseInfo} children.
+     */
     @Override
     public List<BaseInfo> getChildren(BaseInfo parent) {
         List<BaseInfo> children = new LinkedList<>();
@@ -27,11 +36,19 @@ public abstract class LogBaseHandler implements LogHandler {
         return children;
     }
 
+    /**
+     * Add a listener of the Leaf Log update in object of this class.
+     *
+     * @param l {@link HandlerDataUpdateListener}
+     */
     @Override
     public void addHandlerDataUpdateListener(HandlerDataUpdateListener l) {
         updateListeners.add(l);
     }
 
+    /**
+     * Call all the added the {@link HandlerDataUpdateListener}.
+     */
     @Override
     public void update() {
         if (logg != null) {

@@ -11,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Extension the {@link LogBaseHandler} receiving the Leaf Log from the {@link VirtualFile} is opened in the {@link Project}.
+ */
 public class LogFileHandler extends LogBaseHandler {
     private final Project project;
 

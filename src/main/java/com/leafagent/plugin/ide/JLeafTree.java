@@ -8,6 +8,9 @@ import javax.swing.JComponent;
 import javax.swing.BoxLayout;
 import java.awt.Component;
 
+/**
+ * Structure with some parent elements of the {@link JLeafTreeItem}, consisting of the {@link BaseInfo}.
+ */
 public class JLeafTree extends JComponent {
     public JLeafTree(ToolWindow toolWindow, BaseInfo info, LogHandler handler) {
         if (toolWindow != null) {

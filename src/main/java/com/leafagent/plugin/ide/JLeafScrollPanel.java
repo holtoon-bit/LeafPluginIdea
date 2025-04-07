@@ -10,12 +10,18 @@ import com.leafagent.plugin.utils.handler.LogHandler;
 import leafagent.info.BaseInfo;
 
 
+/**
+ * {@link JBScrollPane} for display the {@link JLeafTree}.
+ */
 public class JLeafScrollPanel extends JBScrollPane {
     public JLeafScrollPanel(ToolWindow toolWindow, LogHandler handler) {
         super(new RootChildren(toolWindow, handler));
         setAlignmentX(Component.LEFT_ALIGNMENT);
     }
 
+    /**
+     * Display all the {@link BaseInfo} with {@code id} is {@code -1} as foundational parents.
+     */
     private static class RootChildren extends JPanel {
         public RootChildren(ToolWindow toolWindow, LogHandler handler) {
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

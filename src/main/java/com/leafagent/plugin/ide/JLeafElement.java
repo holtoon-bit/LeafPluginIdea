@@ -10,6 +10,9 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Create description of the {@link JLeafTreeItem}.
+ */
 public class JLeafElement extends JPanel {
     public JLeafElement(BaseInfo info) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

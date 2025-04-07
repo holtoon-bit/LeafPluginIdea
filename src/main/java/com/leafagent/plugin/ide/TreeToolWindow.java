@@ -21,8 +21,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 
+/**
+ * Implementation the {@link ToolWindowFactory} creating the {@link ToolWindow}
+ * to display two tabs with the {@link JLeafTreeComponent}.<br>
+ * This tabs displays the {@code Current File} (last opened file) and {@code Debug} (observe of runtime Android app).
+ */
 public class TreeToolWindow implements ToolWindowFactory {
-    private static final String RUN_APP_TASK_NAME = "Run";
     private static final String LEAF_FILE_EXTENSION_NAME = "json";
     private static final String LEAF_DEBUG_WINDOW_NAME = "Debug";
     private static final String CURRENT_FILE_WINDOW_NAME = "Current File";
@@ -30,6 +34,12 @@ public class TreeToolWindow implements ToolWindowFactory {
     private JLeafTreeComponent debugToolWindowContent;
     private Content debugContent;
 
+    /**
+     * Create the {@code Current File} or {@code Debug} tabs, when start observing.
+     *
+     * @param project {@link Project}
+     * @param toolWindow {@link ToolWindow}
+     */
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         // Leaf for the Mobile debug
@@ -49,13 +59,6 @@ public class TreeToolWindow implements ToolWindowFactory {
                 } catch (IOException e) {
                     LeafNotification.notifyError(project, "Cannot connect to the Android app", "Try connecting your mobile device or launch the emulator to configure adb-connect");
                 }
-            }
-
-            @Override
-            public void contentRemoved(@Nullable RunContentDescriptor descriptor, @NotNull Executor executor) {
-//                if (debugContent != null) {
-//                    toolWindow.getContentManager().removeContent(debugContent, false);
-//                }
             }
         });
 
