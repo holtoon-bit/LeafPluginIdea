@@ -1,9 +1,9 @@
 [versions]
-leafplugin = "1.0.0"
+leafplugin = "1.0.3"
 servlet = "4.0.4"
 
 [libraries]
-leafagent = { group = "leafagent", name = "agent", version.ref = "leafplugin" }
+leafagent = { group = "io.github.holtoon-bit", name = "leafagent", version.ref = "leafplugin" }
 servlet = { group = "jakarta.servlet", name = "jakarta.servlet-api", version.ref = "servlet" }
 
 [plugins]
