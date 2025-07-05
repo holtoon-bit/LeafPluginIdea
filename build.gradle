@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.leafagent"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
   mavenCentral()
@@ -31,7 +31,7 @@ intellijPlatform {
     group = "com.leafagent"
     description = "The Leaf Plugin is a plugin for Android Studio required to display the call tree built by LeafAgent (see https://github.com/holtoon-bit/LeafAgent)."
     ideaVersion.sinceBuild.set("231.9161.38")
-    ideaVersion.untilBuild.set("242.*")
+    ideaVersion.untilBuild.set("252.*")
   }
   publishing {
     token = System.getenv("JETBRAINS_LEAF_PUBLISH_TOKEN")

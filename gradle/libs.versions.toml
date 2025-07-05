@@ -1,5 +1,5 @@
 [versions]
-leafplugin = "1.0.3"
+leafplugin = "1.0.5"
 servlet = "4.0.4"
 
 [libraries]

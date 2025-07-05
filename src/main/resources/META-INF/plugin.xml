@@ -8,7 +8,6 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.android</depends>
-    <depends>com.intellij.modules.androidstudio</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Leaf Agent" secondary="true" icon="/icons/iconLeaf.svg" anchor="right"

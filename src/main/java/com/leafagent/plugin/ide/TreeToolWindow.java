@@ -54,6 +54,7 @@ public class TreeToolWindow implements ToolWindowFactory {
                         debugToolWindowContent = new JLeafTreeComponent(toolWindow, socket.getHandler());
                         debugContent = ContentFactory.getInstance().createContent(debugToolWindowContent, LEAF_DEBUG_WINDOW_NAME, false);
                         toolWindow.getContentManager().addContent(debugContent);
+                        toolWindow.getContentManager().setSelectedContent(debugContent);
                     }
                 } catch (IOException e) {
                     LeafNotification.notifyError(project, "Cannot connect to the Android app", "Try connecting your mobile device or launch the emulator to configure adb-connect");
